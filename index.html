@@ -1,37 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>網頁製作 | 溫暖自然 | 客製化 |WarmWood</title>
+  <meta name="description" content="WarmWood 專注於前端網頁製作，為個人品牌與小型工作室打造溫暖自然的品牌頁面與 Landing Page，讓網站如木頭般舒適、安心。">
+  <meta name="keywords" content="網頁製作, Landing Page, 品牌網站, 前端設計, 小型工作室網站設計, 自然風網頁設計, 療癒風品牌頁">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
+
 <body>
-  <header class="container" role="banner">
+
+  <header>
+    <p class="logo">
+      WarmWood
+    </p>
+    <input type="checkbox" class="nav-toggle" id="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
     <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
+      <ul>
+        <li><a href="#home">首頁</a></li>
+        <li><a href="#services">服務內容</a></li>
+        <li><a href="#portfolio">作品展示</a></li>
+        <li><a href="#about">關於我</a></li>
+        <li><a href="#contact">聯絡我們</a></li>
+      </ul>
     </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
   </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
-  </footer>
+  <section class="banner">
+    <div class="banner-bg"></div>
+    <div class="banner-content">
+      <h1>🌿 WarmWood 🌿 </h1>
+      <h2> 溫暖自然的網頁製作工作室</h2>
+      <p>打造如木頭般溫度的品牌網站，讓每一個訪客都感受到舒適與安心。</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Services Section -->
+    <section id="services">
+      <h2>我們的服務</h2>
+      <article>
+        <h3>品牌形象頁面設計</h3>
+        <p>專注於小型品牌，透過溫暖自然的視覺設計，讓你的品牌故事更生動、易被記住。</p>
+      </article>
+      <article>
+        <h3>Landing Page 設計</h3>
+        <p>精準抓住目標客群的注意力，設計清晰易懂的轉換頁面，提高品牌價值與行動率。</p>
+      </article>
+      <article>
+        <h3>視覺優化與前端美化</h3>
+        <p>優化色彩、排版、留白與動畫效果，讓網站如木頭般溫度，訪客停留更久、感受更舒適。</p>
+      </article>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <h2>作品展示</h2>
+      <p>我們為多個個人品牌與小型工作室打造過專屬網站，每個作品都融入自然溫暖的元素。</p>
+      <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" alt="溫暖自然風品牌網站範例" />
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>聯絡我們</h2>
+      <p>想打造一個有溫度的品牌網站嗎？💛 歡迎隨時聯絡我們！</p>
+      <a href="mailto:contact@warmwood.com">contact@warmwood.com</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 WarmWood Web Studio 🌿 保留所有權利</p>
+    </footer>
+  </div>
 </body>
+
+<script src="scripts/main.js"></script>
+
 </html>
