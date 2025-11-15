@@ -2,36 +2,433 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lucy 寵物保母：介紹專業到府照護、陪伴散步、短期托管與價目表。呈現可愛、溫暖、清新的風格，提供工作經歷、顧客回饋、FAQ、工作時間與聯絡方式，讓飼主安心委託毛孩照護。" />
+  <title>寵物保母｜Lucy · Pet Nanny</title>
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    /* ------------------------------
+       RESET
+    ------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+      background-color: #F9F9F9;
+      color: #333;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      border-radius: 30px;
+      background-color: #f7a8b8;
+      color: #fff;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #ff95ad;
+    }
+
+    /* ------------------------------
+       COLORS
+    ------------------------------ */
+    :root {
+      /* --primary: #F7A8B8;  */
+      --primary: #e78a98; /* 粉色主色 */
+      --secondary: #A4D0F0; /* 淺藍輔色 */
+      --beige: #F4E2E7; 
+      --text-dark: #333;
+      --text-light: #888;
+    }
+
+    /* ------------------------------
+       HEADER + NAV
+    ------------------------------ */
+    header {
+      background-color: var(--beige);
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ------------------------------
+       HAMBURGER
+    ------------------------------ */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 22px;
+      height: 3px;
+      background-color: #333;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 1rem;
+        top: 60px;
+        background: white;
+        padding: 1rem;
+        border-radius: 10px;
+        flex-direction: column;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ------------------------------
+       SECTIONS
+    ------------------------------ */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 1rem;
+    }
+
+    h2.section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .section-text {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+    .hero {
+      min-height: 70vh;
+      background-image: url("https://images.unsplash.com/photo-1568506759658-7d8f4bee0927?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(3px);
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      /* max-width: 1200px; */
+      max-width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #4a4a4a;
+    }
+
+    .hero p {
+      margin: 1rem 0 2rem;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    /* ------------------------------
+       IMAGE CARDS
+    ------------------------------ */
+    .card-grid {
+      display: grid;
+      gap: 1.8rem;
+    }
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card img {
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    /* ------------------------------
+       PRICE TABLE
+    ------------------------------ */
+    .price-table {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+    footer {
+      background-color: var(--beige);
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
   </style>
+
+  <script>
+    /* ------------------------------
+       HAMBURGER MENU
+    ------------------------------ */
+    document.addEventListener("DOMContentLoaded", () => {
+      const ham = document.querySelector(".hamburger");
+      const nav = document.querySelector(".nav-links");
+
+      ham.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    });
+  </script>
 </head>
+
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
+
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="logo">Lucy · Pet Nanny</div>
+
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#about">介紹自己</a></li>
+        <li><a href="#services">提供服務</a></li>
+        <li><a href="#experience">工作經歷</a></li>
+        <li><a href="#reviews">顧客回饋</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#pricing">價目表</a></li>
+        <li><a href="#contact">聯絡方式</a></li>
+      </ul>
     </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
   </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>專業寵物保母 · 到府照護 · 陪伴散步</h1>
+      <p>
+        讓毛孩在家也能得到最安心、最溫暖的照顧。<br />
+        專為貓咪、狗狗打造的客製化陪伴方案。
+      </p>
+      <a href="#contact" class="btn">立即預約</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">介紹自己</h2>
+    <div class="section-text">
+      嗨，我是 Lucy！從事寵物照護已超過 7 年，擅長陪伴中小型犬、貓咪，並提供客製化照護計畫。
+      <br><br>
+      我相信每隻毛孩都值得被理解、溫柔對待。
+    </div>
+
+    <br><br>
+
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>7 年專業寵物照護</h3>
+        <p>累積 500+ 小時居家照護經驗，熟悉毛孩情緒與需求。</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>熟悉犬貓行為</h3>
+        <p>能精準判斷毛孩狀況，提供穩定又安心的陪伴。</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>客製化照護計畫</h3>
+        <p>根據毛孩年齡、作息量身打造照護內容。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="section-title">提供服務</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>到府照護</h3>
+        <p>餵食、陪玩、清理環境，完全依照毛孩需求進行。</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>每日散步服務</h3>
+        <p>幫忙帶狗狗散步，短程 / 長程皆可安排。</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=60" alt="寵物照片">
+        <h3>長期托管</h3>
+        <p>長假、出國、出差皆可預約，提供穩定照護。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title">工作經歷</h2>
+    <div class="section-text">
+      ✔ 7 年寵物保母經驗  
+      <br>✔ 多次協助安親、陪伴、長期照顧  
+      <br>✔ 擅長改善緊張、分離焦慮、易緊張的毛孩情緒
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <h2 class="section-title">顧客回饋</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>🐶 Coco 主人</h3>
+        <p>Lucy 很細心，會傳照片與影片回報，讓我們超安心！</p>
+      </div>
+      <div class="card">
+        <h3>🐱 Mimi 主人</h3>
+        <p>貓咪本來很怕生，但居然主動接近她，太神奇！</p>
+      </div>
+      <div class="card">
+        <h3>🐶 Bibi 主人</h3>
+        <p>出國 10 天，回來狗狗心情超穩定，非常推薦！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <div class="section-text" style="text-align:left; max-width:700px;">
+      <p><strong>Q：要提前多久預約？</strong><br>A：至少 3–7 天，連假建議提前 2 週。</p><br>
+      <p><strong>Q：可否每天提供照片回報？</strong><br>A：可以！每天至少 3 次。</p><br>
+      <p><strong>Q：可以照顧大型犬嗎？</strong><br>A：僅接受中小型犬。</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2 class="section-title">價目表</h2>
+    <div class="price-table">
+      <div class="price-row"><span>到府照護（30 分鐘）</span><strong>$350</strong></div>
+      <div class="price-row"><span>到府照護（60 分鐘）</span><strong>$600</strong></div>
+      <div class="price-row"><span>每日散步（20～30 分）</span><strong>$300</strong></div>
+      <div class="price-row"><span>長期托管（每日）</span><strong>$1200 起</strong></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">聯絡方式</h2>
+    <div class="section-text">
+      若想預約或詢問服務細節，歡迎透過下列方式聯絡我：<br><br>
+      <strong>Email：</strong> lucy@service.com<br>
+      <strong>LINE：</strong> @lucypetnanny<br>
+      <strong>IG：</strong> @lucy.pet.nanny
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Lucy · Pet Nanny — All Rights Reserved.
   </footer>
+
 </body>
 </html>
