@@ -215,6 +215,37 @@
         /* CSS:FOOTER-END */
 
         /* CSS:RWD-START */
+        @media (max-width: 767px) { /* Adjustments for small screens, up to tablet portrait */
+            .nav {
+                flex-wrap: wrap; /* Allow navigation items to wrap */
+                justify-content: center; /* Center items when wrapped */
+                padding: 0.75rem 0; /* Slightly reduce padding */
+            }
+            .nav-logo {
+                font-size: 1.2rem; /* Smaller font for logo */
+                margin-bottom: 0.5rem; /* Add space below logo if it wraps */
+            }
+            .nav-links {
+                gap: 0.75rem; /* Smaller gap between links */
+                justify-content: center; /* Center nav links */
+                width: 100%; /* Ensure links take full width for centering */
+            }
+            .nav-link {
+                font-size: 0.9rem; /* Smaller font for links */
+                padding: 0.2rem 0.4rem; /* Reduced padding */
+            }
+            .hero-title {
+                font-size: 2em; /* Ensure hero title is appropriate for smallest screens */
+            }
+            .section {
+                padding-top: 2rem; /* Reduce section padding on small screens */
+                padding-bottom: 2rem;
+            }
+            .section-title {
+                font-size: 1.8em; /* Smaller section titles */
+            }
+        }
+
         @media (min-width: 768px) {
             .section-title {
                 font-size: 2.5em;
