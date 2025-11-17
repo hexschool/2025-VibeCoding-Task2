@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amber 個人網頁</title>
+    <!-- SEO 描述（50–160字） -->
+    <meta
+      name="description"
+      content="Amber，正準備轉職為前端工程師，擁有 HTML、CSS、JavaScript 與 Node.js 基礎，熱衷於打造直覺的使用者介面與流暢的響應式體驗。希望在實務專案中持續成長並貢獻團隊。"
+    />
+
+    <style>
+      /* 基本重置與排版 */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Noto Sans TC", "Helvetica Neue", Arial, "PingFang TC";
+        line-height: 1.5;
+        color: rgb(255, 152, 178);
+        background: rgba(4, 5, 6, 0.816);
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden; /* 確保在 320/768/1440 等寬度下不會產生水平捲動 */
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 16px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      nav {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      a {
+        color: #eef2f6;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 24px;
+        align-items: center;
+        margin: 28px 0;
+      }
+
+      .hero .intro h1 {
+        margin: 0 0 12px 0;
+        font-size: 1.6rem;
+      }
+      .hero .intro p {
+        margin: 0 0 16px 0;
+      }
+
+      .profile-img {
+        width: 100%;
+        max-width: 320px;
+        border-radius: 12px;
+      }
+
+      section {
+        background: rgba(4, 5, 6, 0.218);
+        padding: 16px;
+        border-radius: 12px;
+        border: 2px solid rgba(255, 152, 178, 0.458);
+        box-shadow: 0 1px 6px rgba(12, 18, 30, 0.04);
+        margin-bottom: 18px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .projects .project {
+        display: block;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid #eef2f6;
+      }
+      .projects .project img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+      li {
+        list-style: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 16px 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* 響應式：確保在 320 / 768 / 1440 窗口寬度下無水平捲動 */
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+        .profile-img {
+          max-width: 180px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        nav {
+          width: 100%;
+          justify-content: flex-start;
+        }
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .hero .intro h1 {
+          font-size: 2rem;
+        }
+      }
+
+      /* 防止任何元素超出螢幕 */
+      img,
+      iframe,
+      embed,
+      object {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a class="brand" href="#about">
+          <img src="./codingGal.png" alt="Amber 頭像" />
+          <div>
+            <div style="font-weight: 700">Amber</div>
+            <div style="font-size: 0.85rem; color: #666">前端工程師候選人</div>
+          </div>
+        </a>
+
+        <nav aria-label="主選單">
+          <a href="#about">關於我</a>
+          <a href="#projects">專案</a>
+          <a href="#contact">聯絡</a>
+          <a href="https://github.com/amber" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="intro-title">
+          <div class="intro">
+            <h1 id="intro-title">Amber — 轉職前端工程師</h1>
+            <p>
+              我熟悉 HTML、CSS、JavaScript，並具備 Node.js 與 MySQL
+              的基礎經驗。擅長將設計稿拆解為可維護的元件、優化行動裝置使用體驗，期望加入前端團隊實作真實專案。
+            </p>
+            <p>
+              <strong>技能：</strong>HTML / CSS / SASS / JavaScript / Node.js /
+              基礎 MySQL
+            </p>
+            <p>
+              <a href="#projects">查看專案</a> •
+              <a href="mailto:amber@example.com">寫信給我</a> •
+              <a href="tel:+886912345678">電話聯絡</a>
+            </p>
+          </div>
+
+          <div>
+            <img
+              class="profile-img"
+              src="./codingGal.png"
+              alt="Amber 半身照，穿著職業便服、微笑面向鏡頭"
+            />
+          </div>
+        </section>
+
+        <section id="about" aria-labelledby="about-title">
+          <h2 id="about-title">關於我</h2>
+          <p>
+            過去曾擔任業務與課程企劃助理，具備與客戶溝通與需求拆解的經驗。自學前端
+            8
+            個月，完成多個小型專案（含留言板與表單串接），渴望在團隊中擔任前端工程師。
+          </p>
+        </section>
+
+        <section
+          id="projects"
+          class="projects"
+          aria-labelledby="projects-title"
+        >
+          <h2 id="projects-title">專案</h2>
+          <div class="grid-2">
+            <a class="project" href="projects/guestbook/index.html">
+              <img
+                src="images/project-guestbook.jpg"
+                alt="留言板專案畫面截圖"
+              />
+              <h3>留言板（Node.js + MySQL）</h3>
+              <p>能將使用者留言透過後端發送 email、並有基本驗證。</p>
+            </a>
+
+            <a class="project" href="projects/portfolio/index.html">
+              <img src="images/project-portfolio.jpg" alt="個人作品集截圖" />
+              <h3>個人作品集</h3>
+              <p>
+                展示多個小型專案與技術說明，響應式設計優化行動裝置閱讀體驗。
+              </p>
+            </a>
+          </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">聯絡</h2>
+          <p>歡迎透過以下方式聯絡我：</p>
+          <ul>
+            <li>
+              Email: <a href="mailto:amber@example.com">amber@example.com</a>
+            </li>
+            <li>手機: <a href="tel:+886912345678">+886 912 345 678</a></li>
+            <li>
+              GitHub:
+              <a href="https://github.com/amber" target="_blank" rel="noopener"
+                >https://github.com/amber</a
+              >
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          &copy; <span id="year"></span> Amber。欲知更多可下載履歷或聯絡我。
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // 小腳本：填入年份。無需額外依賴。
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
