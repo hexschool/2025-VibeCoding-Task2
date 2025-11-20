@@ -106,24 +106,73 @@ a:hover, a:focus { text-decoration:underline; }
 
 /* CSS:ABOUT-START */
 .section-about {
-  padding:36px 0;
-  background:transparent;
+  padding: 48px 0;
+  background: transparent;
 }
+
+.section-about .section-title {
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
 .about-grid {
-  display:block;
-  gap:20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-.about-card {
-  background:var(--panel);
-  padding:18px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.03);
+
+.about-text {
+  background: var(--panel);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
-.section-title {
-  margin:0 0 12px 0;
-  font-size:1.1rem;
-  color:var(--text);
+
+.about-text p {
+  margin: 0 0 14px 0;
+  color: var(--text);
 }
+
+.about-list {
+  margin: 12px 0 20px 0;
+  padding-left: 20px;
+}
+
+.about-list li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.about-photo img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.about-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.about-btns a {
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+}
+
 /* CSS:ABOUT-END */
 
 
@@ -222,6 +271,21 @@ a:hover, a:focus { text-decoration:underline; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); gap:20px; }
 }
 
+@media (min-width: 768px) {
+  .about-grid {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-photo {
+    flex: 1;
+  }
+}
+
 @media (min-width: 1100px){
   .projects-grid { grid-template-columns: repeat(3, 1fr); }
   .about-grid { grid-template-columns: 1fr 380px; }
@@ -253,22 +317,42 @@ a:hover, a:focus { text-decoration:underline; }
   <!-- SECTION:HERO-END -->
 
   <!-- SECTION:ABOUT-START -->
-  <section id="about" class="section section-about" aria-labelledby="about-heading">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-card">
-          <h2 id="about-heading" class="section-title">關於我（之後會用 Section SDD 替換）</h2>
-          <p class="muted">這裡目前是 About 區的占位內容，會在 Phase 2 使用 Section SDD 產生更完整的個人介紹（含經歷、專長、簡短敘述）。</p>
-          <p class="muted">之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
-        </div>
+ <section id="about" class="section-about">
+  <div class="container">
+    <h2 class="section-title">關於我</h2>
 
-        <aside class="about-card" aria-hidden="false">
-          <h3 class="section-title">形象示意圖</h3>
-          <img src="https://images.unsplash.com/photo-1523475496153-3d6cc8f0f96f?auto=format&fit=crop&w=800&q=60" alt="辦公桌與筆電的工作空間" loading="lazy" />
-        </aside>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          我是一位前端工程師，目前主要從事前端開發、教學與網站相關接案。  
+          熟悉的技能包含：HTML、CSS、JavaScript、RWD、UI Layout、無框架前端工程。
+        </p>
+
+        <p>
+          我的背景讓我特別重視「溝通」與「把事情講清楚」這件事。  
+          我喜歡教學、也習慣把複雜內容整理成能看懂的結構與流程。
+        </p>
+
+        <ul class="about-list">
+          <li>協助規劃網站結構與前端技術方向</li>
+          <li>提供清楚、可維護的前端程式碼</li>
+          <li>協助非工程背景者理解技術概念</li>
+        </ul>
+
+        <div class="about-btns">
+          <a href="#projects" class="btn-primary">查看作品集</a>
+          <a href="#contact" class="btn-secondary">聯絡我</a>
+        </div>
+      </div>
+
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" 
+             alt="工程師正在使用筆電寫程式的示意照片">
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
   <!-- SECTION:ABOUT-END -->
 
   <!-- SECTION:SKILLS-START -->
