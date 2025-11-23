@@ -2,36 +2,389 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
+  <title>Jodi Chen｜共生照顧建築師</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Jodi Chen，共生照顧建築師與服務設計顧問，專注高齡社會、長期照顧、生態系統設計與數位協作平台 Connect 10 的實作與策略。"
+  />
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    :root {
+      --bg: #FAF4EB;
+      --card: #FFFFFF;
+      --text-main: #4A3428;
+      --accent: #F2994A;
+      --accent-soft: #FFE2C5;
+      --green: #7CB8A4;
+      --border-radius-lg: 20px;
+      --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+      --max-width: 1024px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans TC", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden; /* 避免小誤差導致水平捲動 */
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 16px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr);
+      gap: 32px;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, #FFF7EC, #FAF4EB);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 40px;
+    }
+
+    .hero-kicker {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .hero-text {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(242, 153, 74, 0.4);
+    }
+
+    .hero-cta span.icon {
+      font-size: 16px;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-card {
+      background-color: var(--card);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      font-size: 13px;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .hero-card-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: #EFF8F4;
+      font-size: 11px;
+      color: #33695A;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), var(--green));
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background-color: var(--card);
+      border-radius: var(--border-radius-lg);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9c7b5c;
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 8px 0 0;
+    }
+
+    .card li {
+      margin-bottom: 4px;
+    }
+
+    .timeline {
+      border-left: 2px solid #E2D4C3;
+      padding-left: 16px;
+      margin-left: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -19px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 0 4px #FFE6CF;
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid #E0D2C4;
+      padding: 4px 10px;
+      font-size: 12px;
+      background-color: #FFFBF7;
+    }
+
+    .contact-card {
+      background-color: var(--card);
+      border-radius: var(--border-radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+    }
+
+    .contact-row {
+      margin: 6px 0;
+    }
+
+    footer {
+      font-size: 12px;
+      opacity: 0.6;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 20px 18px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
-  </header>
+  <div class="page">
+    <header>
+      <div class="logo">JODI CHEN</div>
+      <nav>
+        <a href="#about">關於 Jodi</a>
+        <a href="#journey">生涯路徑</a>
+        <a href="#projects">代表實作</a>
+        <a href="#focus">現在關注</a>
+        <a href="#work-with-me">合作方式</a>
+      </nav>
+    </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
-  </footer>
-</body>
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="hero-kicker">共生照顧建築師</div>
+        <h1 class="hero-title">在高齡與照顧現場，設計可以好好生活的生態系</h1>
+        <div class="hero-subtitle">Jodi｜服務設計 × 長期照顧 × 社區共生</div>
+        <p class="hero-text">
+          創照服務設計股份有限公司設計長，從企業行銷、社會設計到長期照顧實務，專注打造「共生之家 × 數位協作 × 人才培育」的整合照顧生態系。
+        </p>
+        <div class="hero-tags">
+          <span class="tag">#共生照顧</span>
+          <span class="tag">#長期照顧設計</span>
+          <span class="tag">#Connect10</span>
+          <span class="tag">#照顧人才培育</span>
+          <span class="tag">#社區共生</span>
+        </div>
+        <a href="#work-with-me" class="hero-cta">
+          <span class="icon">✉️</span>
+          <span>想和 Jodi 合作</span>
+        </a>
+      </div>
+      <div class="hero-side">
+        <div class="hero-card">
+          <div class="hero-card-title">現在的工作位置</div>
+          <div>創照服務設計股份有限公司 設計長</div>
+          <div class="hero-card-pill">在服務設計和照顧現場之間搭橋</div>
+        </div>
+        <div class="her
+        </body>
 </html>
