@@ -2,36 +2,815 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>個人網站｜骨架 v1.0</title>
+  <meta name="description" content="這是一個以單一 index.html 建立的個人網站骨架，採手機優先 RWD、無 JavaScript、無外部資源，並預留完整 HTML 與 CSS 插槽，方便後續替換與擴充內容。" />
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    /* =========================================================
+       全站基礎設定（Mobile-first / 無水平捲動）
+       注意：本 CSS 嚴禁使用 ID 選擇器（#xxx）
+       ========================================================= */
+
+    :root{
+      --bg: #0f1221;
+      --bg-soft: #151a33;
+      --card: #1a2040;
+      --text: #e6e9f5;
+      --text-soft: #b8bed6;
+      --brand: #7aa2ff;
+      --brand-2: #7ef0d2;
+      --danger: #ff7a7a;
+
+      --radius-lg: 18px;
+      --radius-md: 12px;
+
+      --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+
+      --container: 1100px;
+      --gap-1: 8px;
+      --gap-2: 12px;
+      --gap-3: 16px;
+      --gap-4: 20px;
+      --gap-5: 28px;
+      --gap-6: 40px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, #1f2652, transparent),
+                  radial-gradient(1000px 700px at -10% 0%, #192048, transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden; /* 防水平捲動保險 */
+    }
+
+    img{
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container{
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    .section{
+      padding: 56px 0;
+    }
+
+    .section-header{
+      display: grid;
+      gap: var(--gap-2);
+      margin-bottom: var(--gap-5);
+    }
+    .section-eyebrow{
+      font-size: 14px;
+      color: var(--text-soft);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .section-title{
+      font-size: clamp(22px, 3.5vw, 34px);
+      margin: 0;
+      line-height: 1.25;
+    }
+    .section-desc{
+      color: var(--text-soft);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* =========================================================
+       Header / 導覽列
+       ========================================================= */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15,18,33,0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: var(--gap-3);
+    }
+
+    .nav-brand{
+      display: flex;
+      align-items: center;
+      gap: var(--gap-2);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-avatar{
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.12);
+      flex: none;
+    }
+
+    .nav-links{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .nav-link{
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--text-soft);
+      border: 1px solid transparent;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .nav-link:hover{
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    /* =========================================================
+       Hero 首屏
+       ========================================================= */
+    .section-hero{
+      padding-top: 36px;
+    }
+    .hero-grid{
+      display: grid;
+      gap: var(--gap-6);
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: var(--gap-4);
+    }
+
+    .hero-title{
+      font-size: clamp(26px, 6vw, 44px);
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+    .hero-subtitle{
+      margin: 0;
+      color: var(--text-soft);
+      font-size: clamp(15px, 2.6vw, 18px);
+    }
+
+    .hero-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap-2);
+      margin-top: 6px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn-primary{
+      background: linear-gradient(90deg, rgba(122,162,255,0.18), rgba(126,240,210,0.14));
+      border-color: rgba(122,162,255,0.5);
+    }
+
+    .hero-media{
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      aspect-ratio: 16 / 10;
+      background: #0b0e1a;
+    }
+    .hero-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-stats{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-2);
+    }
+    .stat{
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      gap: 2px;
+      text-align: center;
+    }
+    .stat-num{
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .stat-label{
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    /* =========================================================
+       通用卡片 / Grid
+       ========================================================= */
+    .grid{
+      display: grid;
+      gap: var(--gap-3);
+    }
+
+    .grid-2{
+      grid-template-columns: 1fr;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: var(--gap-2);
+      min-width: 0; /* 防止 grid 內容撐出水平捲動 */
+    }
+
+    .card-title{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .card-text{
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .chip-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+    }
+
+    /* =========================================================
+       About / Skills / Projects / Blog / Contact 區塊
+       ========================================================= */
+
+    .about-wrap{
+      display: grid;
+      gap: var(--gap-3);
+      align-items: start;
+    }
+
+    .about-photo{
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      aspect-ratio: 4 / 3;
+      background: #0b0e1a;
+    }
+    .about-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .skills-list{
+      display: grid;
+      gap: var(--gap-2);
+    }
+    .skill{
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .skill-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--gap-2);
+    }
+    .skill-name{
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .skill-level{
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .skill-bar{
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.35);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .skill-bar-fill{
+      height: 100%;
+      width: 60%; /* ← 插槽：可依技能調整 */
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    }
+
+    .project-cover{
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #0b0e1a;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 8px;
+    }
+    .project-cover img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .blog-item{
+      display: grid;
+      gap: var(--gap-2);
+    }
+    .blog-meta{
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .contact-grid{
+      display: grid;
+      gap: var(--gap-3);
+    }
+
+    .contact-item{
+      display: grid;
+      gap: 6px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+    .contact-label{
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .contact-value{
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    /* =========================================================
+       Footer
+       ========================================================= */
+    footer{
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 22px 0 30px;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+    .footer-wrap{
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-2);
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    /* =========================================================
+       RWD 斷點（768px / 1440px）
+       ========================================================= */
+
+    @media (min-width: 768px){
+      .hero-grid{
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+      .grid-2{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-wrap{
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+      .contact-grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .footer-wrap{
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 1440px){
+      .section{
+        padding: 72px 0;
+      }
+      .hero-card{
+        padding: 28px;
+      }
+    }
+
+    /* =========================================================
+       CSS 插槽區（Phase 2+ 由你/其他 Prompt 擴充）
+       請勿刪除以下註解
+       ========================================================= */
+
+    /* [CSS-SLOT-START:global-extensions] */
+    /* 在此新增全站延伸樣式，例如：
+       .theme-light { ... }
+       .anim-fade-in { ... }
+    */
+    /* [CSS-SLOT-END:global-extensions] */
+
+    /* [CSS-SLOT-START:section-override] */
+    /* 在此覆寫特定區塊樣式，例如：
+       .section-projects .card { ... }
+       .section-blog .blog-item { ... }
+    */
+    /* [CSS-SLOT-END:section-override] */
+
   </style>
 </head>
+
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
+
+  <!-- =======================================================
+       Header / 導覽列
+       ======================================================= -->
+  <header>
+    <div class="container nav">
+      <a class="nav-brand" href="#top" aria-label="回到頂端">
+        <span class="nav-avatar">
+          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=300&auto=format&fit=crop" alt="個人頭像佔位圖">
+        </span>
+        <span>你的名字｜個人網站</span>
+      </a>
+
+      <nav class="nav-links" aria-label="主要導覽">
+        <a class="nav-link" href="#hero">首頁</a>
+        <a class="nav-link" href="#about">關於我</a>
+        <a class="nav-link" href="#skills">技能</a>
+        <a class="nav-link" href="#projects">專案</a>
+        <a class="nav-link" href="#blog">文章</a>
+        <a class="nav-link" href="#contact">聯絡</a>
+      </nav>
+    </div>
   </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
+  <main id="top">
+
+    <!-- =======================================================
+         Hero 首屏
+         HTML 插槽：可替換標題/副標/按鈕/統計/圖
+         ======================================================= -->
+    <section id="hero" class="section section-hero">
+      <div class="container hero-grid">
+
+        <div class="hero-card">
+          <!-- [HTML-SLOT-START:hero-title] -->
+          <h1 class="hero-title">嗨，我是<span style="color: var(--brand);">（你的名字）</span></h1>
+          <!-- [HTML-SLOT-END:hero-title] -->
+
+          <!-- [HTML-SLOT-START:hero-subtitle] -->
+          <p class="hero-subtitle">
+            這裡是一句 1～2 行的個人定位或價值主張。  
+            例如：專注於資料庫維運、自動化與前端應用的工程師。
+          </p>
+          <!-- [HTML-SLOT-END:hero-subtitle] -->
+
+          <!-- [HTML-SLOT-START:hero-actions] -->
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">看我的專案</a>
+            <a class="btn" href="#contact">與我聯絡</a>
+          </div>
+          <!-- [HTML-SLOT-END:hero-actions] -->
+
+          <!-- [HTML-SLOT-START:hero-stats] -->
+          <div class="hero-stats" aria-label="個人亮點統計">
+            <div class="stat">
+              <div class="stat-num">8+</div>
+              <div class="stat-label">年經驗</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">20+</div>
+              <div class="stat-label">專案數</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">∞</div>
+              <div class="stat-label">持續學習</div>
+            </div>
+          </div>
+          <!-- [HTML-SLOT-END:hero-stats] -->
+        </div>
+
+        <!-- [HTML-SLOT-START:hero-image] -->
+        <figure class="hero-media">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="首圖佔位 Unsplash">
+        </figure>
+        <!-- [HTML-SLOT-END:hero-image] -->
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         About 關於我
+         ======================================================= -->
+    <section id="about" class="section section-about">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-eyebrow">ABOUT</div>
+          <h2 class="section-title">關於我</h2>
+          <p class="section-desc">
+            這一區用於介紹你的背景、經歷、價值觀與目前關注的方向。
+          </p>
+        </header>
+
+        <div class="about-wrap">
+          <!-- [HTML-SLOT-START:about-photo] -->
+          <figure class="about-photo">
+            <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop" alt="關於我照片佔位 Unsplash">
+          </figure>
+          <!-- [HTML-SLOT-END:about-photo] -->
+
+          <div class="grid">
+            <!-- [HTML-SLOT-START:about-content] -->
+            <div class="card">
+              <h3 class="card-title">我是做什麼的？</h3>
+              <p class="card-text">
+                用 3~5 句話描述你擅長的事情、工作領域、解決的問題。
+                之後你可以用其他 Prompt 直接替換此段。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">我重視什麼？</h3>
+              <p class="card-text">
+                寫下你的工作哲學、價值主張或你希望帶來的影響。
+              </p>
+            </div>
+            <!-- [HTML-SLOT-END:about-content] -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         Skills 技能
+         ======================================================= -->
+    <section id="skills" class="section section-skills">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-eyebrow">SKILLS</div>
+          <h2 class="section-title">技能與專長</h2>
+          <p class="section-desc">
+            這裡可列出你的技術堆疊、熟練度、工具或方法論。
+          </p>
+        </header>
+
+        <!-- [HTML-SLOT-START:skills-list] -->
+        <div class="skills-list">
+          <div class="skill">
+            <div class="skill-head">
+              <div class="skill-name">SQL Server 維運</div>
+              <div class="skill-level">熟練</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-head">
+              <div class="skill-name">虛擬化 / 容器化（Proxmox / Docker / K8s）</div>
+              <div class="skill-level">進階</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 78%;"></div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-head">
+              <div class="skill-name">前端開發（HTML/CSS）</div>
+              <div class="skill-level">中階</div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 65%;"></div>
+            </div>
+          </div>
+        </div>
+        <!-- [HTML-SLOT-END:skills-list] -->
+      </div>
+    </section>
+
+    <!-- =======================================================
+         Projects 專案
+         ======================================================= -->
+    <section id="projects" class="section section-projects">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-eyebrow">PROJECTS</div>
+          <h2 class="section-title">精選專案</h2>
+          <p class="section-desc">
+            每個專案建議包含：封面、簡介、角色、成果、技術標籤。
+          </p>
+        </header>
+
+        <!-- [HTML-SLOT-START:projects-grid] -->
+        <div class="grid grid-2">
+          <article class="card">
+            <div class="project-cover">
+              <img src="https://images.unsplash.com/photo-1556155092-8707de31f9c4?q=80&w=1600&auto=format&fit=crop" alt="專案封面佔位 Unsplash">
+            </div>
+            <h3 class="card-title">專案標題 A</h3>
+            <p class="card-text">
+              這裡描述專案背景與你解決了什麼問題。保持 2～3 句。
+            </p>
+            <div class="chip-row" aria-label="專案技術標籤">
+              <span class="chip">SQL Server</span>
+              <span class="chip">Always On</span>
+              <span class="chip">監控</span>
+            </div>
+            <a class="btn" href="#project-a" aria-label="前往專案 A 詳細頁（之後補上）">查看細節</a>
+          </article>
+
+          <article class="card">
+            <div class="project-cover">
+              <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1600&auto=format&fit=crop" alt="專案封面佔位 Unsplash">
+            </div>
+            <h3 class="card-title">專案標題 B</h3>
+            <p class="card-text">
+              這裡描述專案成果、效益或代表性的亮點。
+            </p>
+            <div class="chip-row">
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Docker</span>
+              <span class="chip">自動化</span>
+            </div>
+            <a class="btn" href="#project-b">查看細節</a>
+          </article>
+        </div>
+        <!-- [HTML-SLOT-END:projects-grid] -->
+      </div>
+    </section>
+
+    <!-- =======================================================
+         Blog 文章/分享
+         ======================================================= -->
+    <section id="blog" class="section section-blog">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-eyebrow">BLOG</div>
+          <h2 class="section-title">最新文章</h2>
+          <p class="section-desc">
+            放你的技術筆記、教學、心得或活動紀錄。
+          </p>
+        </header>
+
+        <!-- [HTML-SLOT-START:blog-list] -->
+        <div class="grid grid-2">
+          <article class="card blog-item">
+            <div class="blog-meta">2025/11/01｜分類：資料庫維運</div>
+            <h3 class="card-title">文章標題 1</h3>
+            <p class="card-text">
+              文章摘要 1～2 句，之後替換成真實內容。
+            </p>
+            <a class="btn" href="#blog-1">閱讀全文</a>
+          </article>
+
+          <article class="card blog-item">
+            <div class="blog-meta">2025/10/15｜分類：容器化</div>
+            <h3 class="card-title">文章標題 2</h3>
+            <p class="card-text">
+              文章摘要 1～2 句。
+            </p>
+            <a class="btn" href="#blog-2">閱讀全文</a>
+          </article>
+        </div>
+        <!-- [HTML-SLOT-END:blog-list] -->
+      </div>
+    </section>
+
+    <!-- =======================================================
+         Contact 聯絡我
+         ======================================================= -->
+    <section id="contact" class="section section-contact">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-eyebrow">CONTACT</div>
+          <h2 class="section-title">聯絡我</h2>
+          <p class="section-desc">
+            這裡放聯絡方式。暫時用佔位資料，Phase 2 再替換。
+          </p>
+        </header>
+
+        <!-- [HTML-SLOT-START:contact-items] -->
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">yourname@example.com</div>
+            <div class="card-text">工作／合作邀約歡迎來信。</div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/yourname</div>
+            <div class="card-text">放你的開源專案或作品。</div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">linkedin.com/in/yourname</div>
+            <div class="card-text">你的職涯與社群連結。</div>
+          </div>
+        </div>
+        <!-- [HTML-SLOT-END:contact-items] -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =======================================================
+       Footer
+       ======================================================= -->
+  <footer>
+    <div class="container footer-wrap">
+      <!-- [HTML-SLOT-START:footer-left] -->
+      <div>© <span>2025</span> 你的名字｜保留一切權利</div>
+      <!-- [HTML-SLOT-END:footer-left] -->
+
+      <!-- [HTML-SLOT-START:footer-right] -->
+      <div>此網站為單一 index.html 骨架（Phase 1）</div>
+      <!-- [HTML-SLOT-END:footer-right] -->
+    </div>
   </footer>
+
+  <!-- =======================================================
+       安全錨點（避免 href="#"）
+       之後可替換為真實頁面或 modal 入口
+       ======================================================= -->
+  <span id="project-a"></span>
+  <span id="project-b"></span>
+  <span id="blog-1"></span>
+  <span id="blog-2"></span>
+
+  <!-- =======================================================
+       HTML 插槽區（Phase 2+ 由你/其他 Prompt 擴充）
+       你可以在這裡新增整段 section、或插入新元件
+       ======================================================= -->
+
+  <!-- [HTML-SLOT-START:extra-sections] -->
+  <!-- 例如：
+    <section id="talks" class="section section-talks">...</section>
+  -->
+  <!-- [HTML-SLOT-END:extra-sections] -->
+
 </body>
 </html>
