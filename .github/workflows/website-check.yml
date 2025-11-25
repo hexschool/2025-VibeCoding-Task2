@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - develop
+  pull_request:
+    branches:
+      - main
 
 jobs:
   validate:
@@ -18,11 +21,14 @@ jobs:
         with:
           node-version: 20
 
+      # 安裝 package.json 裡的套件
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm ci
 
+      # 安裝 Playwright 瀏覽器
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      # 執行你在 package.json 定義好的腳本
       - name: Run website checks
         run: npm run check:all
