@@ -2,36 +2,602 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alysha 的專業 UX 設計與網站體驗作品集，結合策略、研究與前端思維，展現完整設計流程與成果。">
+  <title>Alysha — Personal Website</title>
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    /* CSS:BASE-START */
+    :root {
+      --bg: #fafafa;
+      --text: #222;
+      --primary: #5755d9;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header.site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 20;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    section {
+      padding: 120px 32px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid transparent;
+      transition: 0.25s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    /* CSS:BASE-END */
+
+
+    /* CSS:HERO-START */
+    #hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    #hero .hero-text {
+      flex: 1;
+    }
+
+    #hero h1 {
+      font-size: 52px;
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+
+    #hero p {
+      font-size: 18px;
+      max-width: 480px;
+      opacity: 0.85;
+    }
+
+    .hero-buttons {
+      margin-top: 24px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .hero-image-slot {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eee;
+      height: 360px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero-image-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    /* CSS:HERO-END */
+
+
+    /* CSS:ABOUT-START */
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .about-text {
+      max-width: 600px;
+    }
+
+    .about-text p {
+      margin-bottom: 16px;
+    }
+
+    .about-list {
+      list-style: disc;
+      padding-left: 20px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .about-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    /* CSS:ABOUT-END */
+
+
+    /* CSS:SKILLS-START */
+    .skills-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .skills-text {
+      max-width: 600px;
+    }
+
+    .skills-text p {
+      margin-bottom: 16px;
+    }
+
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap; 
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .skills-list li {
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .tool-comm {
+      background: #ffd966;
+      color: #222;
+    }
+
+    .tool-prod {
+      background: #6fa8dc;
+      color: #fff;
+    }
+
+    .skills-image {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    /* CSS:SKILLS-END */
+
+
+    /* CSS:PROJECTS-START */
+    .projects-container {
+      display: grid;
+      gap: 40px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 16px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .project-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .project-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 15px;
+      color: #555;
+      margin: 0 0 20px 0;
+    }
+
+    .project-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .project-link:hover {
+      border-bottom-color: var(--primary);
+    }
+
+    .project-img-wrapper {
+      width: 100%;
+      height: 240px;
+      background: #eee;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* CSS:PROJECTS-END */
+
+    /* CSS:CONTACT-START */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #fff;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fafaff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit-wrapper {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-submit {
+      position: relative;
+      border: none;
+      font-size: 16px;
+      width: fit-content;
+    }
+
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease 2s, transform 0.5s ease 2s;
+    }
+
+    .btn-submit:active .toast-message {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      transition: none;
+    }
+    /* CSS:CONTACT-END */
+
+
+    /* CSS:RWD-START */
+    @media (max-width: 900px) {
+      #hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      #hero p {
+        margin: 0 auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-image-slot {
+        width: 100%;
+        height: 280px;
+      }
+    }
+
+    @media (min-width: 901px) {
+      .about-content {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .about-text {
+        flex: 1;
+      }
+      .about-image {
+        flex: 1;
+      }
+      .about-buttons {
+        justify-content: flex-start;
+      }
+
+      .skills-content {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .skills-text {
+        flex: 1;
+      }
+      .skills-image {
+        flex: 1;
+      }
+      
+      .skills-list {
+        justify-content: flex-start;
+      }
+
+      /* Projects RWD Update */
+      .projects-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+
+      .project-card {
+        flex-direction: row; 
+        align-items: stretch;
+      }
+
+      .project-info {
+        flex: 1;
+        padding: 24px;
+      }
+
+      .project-img-wrapper {
+        flex: 1;
+        height: auto;
+      }
+    }
+    /* CSS:RWD-END */
   </style>
 </head>
+
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
+  <header class="site-header">
+    <div class="logo">Alysha</div>
+    <nav>
+      <a href="#hero">首頁</a>
       <a href="#about">關於我</a>
+      <a href="#skills">技能</a>
       <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
+      <a href="#contact">聯絡我</a>
     </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
   </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
+  <section id="hero">
+    <div class="hero-text">
+      <h1>Hi, I'm Alysha.</h1>
+      <p>這是一段 Hero 用的優雅描述文字。未來你可以放專業定位、角色介紹或一句能代表你的標語。</p>
+
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">查看作品</a>
+        <a href="#contact" class="btn btn-outline">與我聯絡</a>
+      </div>
+    </div>
+
+    <div class="hero-image-slot">
+     <img src="Pingu.png" alt="Alysha" />
+    </div>
+  </section>
+  <section id="about">
+    <h2>關於我</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>我目前是一名前端工程師，專注於網頁開發與使用者體驗設計，同時熱衷於教學與接案，熟悉 HTML、CSS、JavaScript 及 React。</p>
+        <p>我重視溝通與團隊協作，喜歡把複雜的概念簡單化並清楚地傳達給他人。</p>
+        <ul class="about-list">
+          <li>具備完整網站 UX/UI 設計能力</li>
+          <li>能協助團隊優化流程與前端實作</li>
+          <li>擅長教學與知識傳遞</li>
+        </ul>
+        <div class="about-buttons">
+          <a href="#projects" class="btn btn-primary">查看作品集</a>
+          <a href="#contact" class="btn btn-outline">聯絡我</a>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="https://source.unsplash.com/400x400/?programmer,coding" alt="寫程式的工程師" />
+      </div>
+    </div>
+  </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-content">
+      <div class="skills-text">
+        <p>我主要技能包含前端開發、使用者體驗設計與跨部門溝通。</p>
+        <p>我重視溝通與協作，喜歡把事情講清楚並確保團隊理解一致。</p>
+        <ul class="skills-list">
+          <li class="tool-comm">跨部門溝通</li>
+          <li class="tool-prod">Figma</li>
+          <li class="tool-prod">Notion</li>
+          <li class="tool-prod">Google Suite</li>
+          <li class="tool-prod">Google Gemini & ChatGPT</li>
+          <li class="tool-prod">Jira</li>
+          <li class="tool-prod">Microsoft Teams</li>
+          <li class="tool-prod">HTML</li>
+          <li class="tool-prod">CSS</li>
+          <li class="tool-prod">JavaScript</li>
+        </ul>
+      </div>
+      <div class="skills-image">
+        <img src="Pingu.png" alt="技能示意圖" />
+      </div>
+    </div>
+  </section>
+  <section id="projects" class="projects-section">
+    <h2>PROJECTS</h2>
+    
+    <div class="projects-container">
+      <article class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Project Title 01</h3>
+          <p class="project-desc">我的專案的簡介。這裡可以簡述專案目標、使用的技術或解決的問題。</p>
+          <a href="https://example.com" class="project-link">Learn more &rarr;</a>
+        </div>
+        <div class="project-img-wrapper">
+          <img src="Pingu.png" alt="Project 01 Preview">
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Project Title 02</h3>
+          <p class="project-desc">我的專案的簡介。這是一個響應式網頁設計的案例展示。</p>
+          <a href="https://example.com" class="project-link">Learn more &rarr;</a>
+        </div>
+        <div class="project-img-wrapper">
+          <img src="Pingu.png" alt="Project 02 Preview">
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Project Title 03</h3>
+          <p class="project-desc">我的專案的簡介。使用者體驗研究與介面優化的成果。</p>
+          <a href="https://example.com" class="project-link">Learn more &rarr;</a>
+        </div>
+        <div class="project-img-wrapper">
+          <img src="Pingu.png" alt="Project 03 Preview">
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-info">
+          <h3 class="project-title">Project Title 04</h3>
+          <p class="project-desc">我的專案的簡介。前端互動特效與 API 串接實作。</p>
+          <a href="https://example.com" class="project-link">Learn more &rarr;</a>
+        </div>
+        <div class="project-img-wrapper">
+          <img src="Pingu.png" alt="Project 04 Preview">
+        </div>
+      </article>
+    </div>
+  </section>
+  <section id="contact">
+    <h2>CONTACT</h2>
+    <form class="contact-form" action="mailto:yu.3hsu@gmail.com" method="post" enctype="text/plain">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="請輸入您的名稱" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="請輸入您的訊息..." required></textarea>
+      </div>
+
+      <div class="btn-submit-wrapper">
+        <button type="submit" class="btn btn-primary btn-submit">
+          Send Message
+          <span class="toast-message">Message sent! Let's chat soon!</span>
+        </button>
+      </div>
+    </form>
+  </section>
+  <footer style="padding: 32px; text-align: center; opacity: 0.7;">
+    © 2025 Alysha — All rights reserved.
   </footer>
+
 </body>
 </html>
