@@ -193,10 +193,9 @@
     .skills-list {
       list-style: none;
       padding: 0;
-      /* 修改：移除 column，改用 row + wrap 製作標籤雲效果 */
       display: flex;
       flex-wrap: wrap; 
-      justify-content: center; /* 手機版置中對齊 */
+      justify-content: center;
       gap: 8px;
       margin-bottom: 24px;
     }
@@ -206,7 +205,6 @@
       border-radius: 6px;
       display: inline-block;
       font-weight: 500;
-      /* 由於父層是 flex row，這裡寬度會自動適應文字 */
     }
 
     .tool-comm {
@@ -292,7 +290,93 @@
     /* CSS:PROJECTS-END */
 
     /* CSS:CONTACT-START */
-    /* 保留原本或待填 */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #fff;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fafaff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* 按鈕容器：讓按鈕依據內容縮放 */
+    .btn-submit-wrapper {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-submit {
+      position: relative; /* 為了定位 toast */
+      border: none;
+      font-size: 16px;
+      width: fit-content; /* 寬度適應文字 */
+    }
+
+    /* CSS-Only Toast 模擬 */
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0;
+      
+      /* 關鍵技巧：
+         1. 預設 opacity: 0
+         2. transition 設為 0.5s fade-out，並延遲 2s 發生 (讓訊息停留)
+      */
+      transition: opacity 0.5s ease 2s, transform 0.5s ease 2s;
+    }
+
+    /* 當按鈕被按下 (Active) 時 */
+    .btn-submit:active .toast-message {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      /* 按下時立即顯示，不延遲 */
+      transition: none;
+    }
     /* CSS:CONTACT-END */
 
 
@@ -344,7 +428,6 @@
         flex: 1;
       }
       
-      /* 新增：桌機版 Skills 列表靠左對齊 */
       .skills-list {
         justify-content: flex-start;
       }
@@ -496,8 +579,30 @@
     </div>
   </section>
   <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-slot"></div>
+    <h2>CONTACT</h2>
+    <form class="contact-form" action="mailto:yu.3hsu@gmail.com" method="post" enctype="text/plain">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="請輸入您的名稱" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="請輸入您的訊息..." required></textarea>
+      </div>
+
+      <div class="btn-submit-wrapper">
+        <button type="submit" class="btn btn-primary btn-submit">
+          Send Message
+          <span class="toast-message">Message sent! Let's chat soon!</span>
+        </button>
+      </div>
+    </form>
   </section>
   <footer style="padding: 32px; text-align: center; opacity: 0.7;">
     © 2025 Alysha — All rights reserved.
