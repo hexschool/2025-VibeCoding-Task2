@@ -1,0 +1,142 @@
+/* 全域設定 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+  background: #f5f7fa;
+  color: #123;
+  overflow-x: hidden; /* 避免水平捲動 */
+}
+
+/* 頁首 */
+.site-header {
+  background: linear-gradient(135deg, #004a8f, #003366);
+  padding: 2.5rem 1.5rem;
+}
+
+/* 這裡專門控制 h1 顏色：金色 */
+.site-title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: gold; /* ← h1 文字會是金色 */
+}
+
+.site-subtitle {
+  margin: 0;
+  color: #e0ecff;
+  font-size: 0.95rem;
+}
+
+/* 版面容器 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+}
+
+/* 主要內容卡片 */
+main {
+  margin-top: -1.2rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.hero-image {
+  margin-top: 0.8rem;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* 功能區塊 */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feature {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: #f9fbff;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #e1e8f5;
+}
+
+.feature h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+  color: #1a3f7a;
+}
+
+/* 連結區 */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.links a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #c5d5f5;
+  background: #eef4ff;
+  color: #18448f;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.links a:hover {
+  background: #dce8ff;
+  transform: translateY(-1px);
+}
+
+/* 頁尾 */
+.site-footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #667;
+  padding: 1.5rem 1rem 2rem;
+}
+
+/* 320px 小手機微調 */
+@media (max-width: 400px) {
+  .site-header,
+  .container {
+    padding-inline: 1rem;
+  }
+}
+
+/* 768px 平板：稍微縮小卡片間距 */
+@media (max-width: 768px) {
+  main {
+    margin-top: -1rem;
+  }
+}
+
+/* 1440px 以上寬度，版面仍維持在 1200px 內，不會超出 */
