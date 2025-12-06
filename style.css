@@ -1,0 +1,130 @@
+/* CSS:BASE-START */
+/* 全站基底樣式（禁止使用 ID 選擇器） */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei",
+    sans-serif;
+  background-color: #0b1220; /* 深色背景 */
+  color: #e6eef8; /* 淺灰白文字 */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  min-width: 0;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 小按鈕 / 連結風格 */
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background-color: rgba(42, 122, 163, 0.14);
+  border: 1px solid rgba(42, 122, 163, 0.18);
+  color: #dff4ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+
+.btn:focus,
+.btn:active {
+  transform: translateY(1px);
+  outline: none;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.section-title {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+}
+/* CSS:BASE-END */
+
+/* HERO 保留（你未貼出，我不改） */
+/* ... */
+
+/* CSS:ABOUT-START（可調整區） */
+.section-about {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.about-text p {
+  margin: 0 0 14px 0;
+  color: #cddde8;
+  line-height: 1.7;
+}
+
+.about-list {
+  padding-left: 18px;
+  margin: 12px 0 18px 0;
+}
+
+.about-list li {
+  margin-bottom: 8px;
+  color: #d3e6f4;
+}
+
+.profile-photo {
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 420px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+}
+/* CSS:ABOUT-END */
+
+/* 其他 Section CSS（Skills / Projects / Contact）保留 */
+/* ... */
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 360px;
+    gap: 36px;
+  }
+}
