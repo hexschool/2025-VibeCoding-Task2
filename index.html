@@ -2,36 +2,261 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>林小美 · UI/UX 設計師 — 作品集</title>
+  <meta name="description" content="林小美是一位擅長 UI/UX 設計、動畫製作與平面設計的設計師，透過使用者研究與視覺整合，打造兼具美感與易用性的網站、App 介面與品牌識別，提供完整的數位體驗設計服務。">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
+<div class="page">
+  <header class="site-header" role="banner">
+    <div class="container nav" role="navigation" aria-label="主導覽列">
+      <div class="site-logo">林小美 · UI/UX Designer</div>
+      <nav class="nav-list" aria-label="主要區段連結">
+        <a class="nav-link" href="#hero">首頁</a>
+        <a class="nav-link" href="#about">關於我</a>
+        <a class="nav-link" href="#skills">技能</a>
+        <a class="nav-link" href="#projects">作品集</a>
+        <a class="nav-link" href="#contact">聯絡</a>
+      </nav>
+    </div>
   </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
+  <main>
+    <!-- SECTION:HERO-START -->
+    <section id="hero" class="section section-hero" aria-labelledby="hero-heading">
+      <div class="container hero-inner">
+        <div>
+          <p class="hero-subtitle">UI/UX 設計師 · 動畫製作 · 視覺設計</p>
+          <h1 id="hero-heading" class="hero-title">用設計創造美好的數位體驗</h1>
+          <p class="hero-lead">我是林小美，一位專注於使用者體驗與視覺設計的創作者。我相信好的設計不只是美觀，更能解決問題、傳遞價值，讓每一次互動都充滿意義。</p>
+          <p class="hero-lead">從品牌識別到介面設計，從靜態視覺到動態效果，我致力於打造既實用又令人驚豔的設計方案。</p>
+          <div class="hero-cta" role="group" aria-label="主要動作">
+            <a class="btn" href="#projects">瀏覽作品集</a>
+            <a class="btn btn-secondary" href="#contact">聯絡合作</a>
+          </div>
+        </div>
+
+        <figure class="hero-figure">
+          <img src="https://picsum.photos/seed/ui-desk/800/600" alt="設計師工作桌面，展示創意設計過程" loading="lazy">
+        </figure>
+      </div>
+    </section>
+    <!-- SECTION:HERO-END -->
+
+    <!-- SECTION:ABOUT-START -->
+    <section id="about" class="section section-about" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2 id="about-heading" class="section-title">關於我</h2>
+          <p>我專注於 UI/UX 設計、動畫製作與平面設計領域，擁有 5 年以上的實務經驗。透過深入理解使用者需求與商業目標，我為品牌與產品創造有溫度、有意義的數位內容。</p>
+          <p>我的設計哲學是「簡約但不簡單」— 每個元素都有存在的理由，每個互動都經過深思熟慮。我相信設計的力量在於平衡美學與功能，創造讓人愉悅且易用的體驗。</p>
+
+          <ul class="about-highlights">
+            <li>品牌識別系統設計，從 Logo 到完整視覺規範，打造一致且具辨識度的品牌形象</li>
+            <li>使用者介面與體驗設計，運用設計思維方法論，創造直覺且流暢的操作體驗</li>
+            <li>動態圖形與微互動設計，透過動畫提升產品的生命力與使用者的參與感</li>
+          </ul>
+
+          <div class="about-cta" role="group" aria-label="關於我相關動作">
+            <a class="btn" href="#projects">查看作品集</a>
+            <a class="btn btn-secondary" href="#contact">聯絡我</a>
+          </div>
+        </div>
+
+        <aside class="profile-photo">
+          <img src="https://picsum.photos/seed/designer-workspace/600/800" alt="創意設計工作環境，展示專業設計工具與作品" loading="lazy">
+        </aside>
+      </div>
+    </section>
+    <!-- SECTION:ABOUT-END -->
+
+    <!-- SECTION:SKILLS-START -->
+    <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="section-title">專業技能</h2>
+        <p class="skills-intro">多年的設計經驗讓我累積了全方位的技能組合，從概念發想到最終交付，我能獨立完成完整的設計流程。</p>
+
+        <div class="skill-categories">
+          <div class="skill-category">
+            <h3 class="skill-category-title">設計工具</h3>
+            <div class="skill-list">
+              <span class="skill-pill">Figma</span>
+              <span class="skill-pill">Adobe XD</span>
+              <span class="skill-pill">Sketch</span>
+              <span class="skill-pill">Adobe Illustrator</span>
+              <span class="skill-pill">Adobe Photoshop</span>
+              <span class="skill-pill">After Effects</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3 class="skill-category-title">設計專長</h3>
+            <div class="skill-list">
+              <span class="skill-pill">UI/UX Design</span>
+              <span class="skill-pill">使用者研究</span>
+              <span class="skill-pill">資訊架構</span>
+              <span class="skill-pill">互動設計</span>
+              <span class="skill-pill">視覺設計</span>
+              <span class="skill-pill">品牌設計</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3 class="skill-category-title">動畫與動態</h3>
+            <div class="skill-list">
+              <span class="skill-pill">Motion Graphics</span>
+              <span class="skill-pill">微互動設計</span>
+              <span class="skill-pill">原型動畫</span>
+              <span class="skill-pill">Lottie 動畫</span>
+              <span class="skill-pill">轉場特效</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3 class="skill-category-title">技術理解</h3>
+            <div class="skill-list">
+              <span class="skill-pill">HTML/CSS</span>
+              <span class="skill-pill">響應式設計</span>
+              <span class="skill-pill">設計系統</span>
+              <span class="skill-pill">前端協作</span>
+              <span class="skill-pill">無障礙設計</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION:SKILLS-END -->
+
+    <!-- SECTION:PROJECTS-START -->
+    <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading" class="section-title">精選作品</h2>
+        <p class="projects-intro">以下是我近期完成的部分專案，涵蓋品牌設計、介面設計與動畫製作等不同領域。每個專案都是獨特挑戰的解決方案。</p>
+
+        <div class="projects-grid">
+          <article class="project-card" aria-labelledby="proj-1-title">
+            <div class="project-image">
+              <img src="https://picsum.photos/seed/ecommerce-ui/800/500" alt="電商平台介面設計展示" loading="lazy">
+            </div>
+            <h3 id="proj-1-title" class="project-title">電商平台 UI/UX 重新設計</h3>
+            <p class="project-desc">為新創電商品牌打造全新的購物體驗，透過使用者研究優化購物流程，提升 35% 的轉換率。採用現代化的視覺語言，讓品牌更具辨識度。</p>
+            <div class="project-tags">
+              <span class="project-tag">UI/UX Design</span>
+              <span class="project-tag">使用者研究</span>
+              <span class="project-tag">Figma</span>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-2-title">
+            <div class="project-image">
+              <img src="https://picsum.photos/seed/coffee-brand/800/500" alt="品牌識別系統設計" loading="lazy">
+            </div>
+            <h3 id="proj-2-title" class="project-title">咖啡品牌識別系統</h3>
+            <p class="project-desc">從零開始建立完整的品牌識別，包含 Logo 設計、色彩系統、字體規範到應用設計。創造溫暖且具現代感的品牌形象，完美詮釋品牌精神。</p>
+            <div class="project-tags">
+              <span class="project-tag">品牌設計</span>
+              <span class="project-tag">視覺識別</span>
+              <span class="project-tag">Illustrator</span>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-3-title">
+            <div class="project-image">
+              <img src="https://picsum.photos/seed/health-app/800/500" alt="行動應用程式介面設計" loading="lazy">
+            </div>
+            <h3 id="proj-3-title" class="project-title">健康管理 App 設計</h3>
+            <p class="project-desc">設計直覺易用的健康追蹤應用程式，整合數據視覺化與互動動畫，讓使用者能輕鬆記錄並了解自己的健康狀態。獲得 App Store 編輯推薦。</p>
+            <div class="project-tags">
+              <span class="project-tag">App Design</span>
+              <span class="project-tag">動畫設計</span>
+              <span class="project-tag">原型設計</span>
+            </div>
+          </article>
+
+          <article class="project-card" aria-labelledby="proj-4-title">
+            <div class="project-image">
+              <img src="https://picsum.photos/seed/product-motion/800/500" alt="動態圖形設計作品" loading="lazy">
+            </div>
+            <h3 id="proj-4-title" class="project-title">產品介紹動畫影片</h3>
+            <p class="project-desc">為 SaaS 產品製作 90 秒的介紹動畫，運用流暢的轉場與動態圖形，清楚傳達產品價值與功能特色。影片在社群媒體獲得超過 50 萬次觀看。</p>
+            <div class="project-tags">
+              <span class="project-tag">Motion Graphics</span>
+              <span class="project-tag">After Effects</span>
+              <span class="project-tag">腳本設計</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION:PROJECTS-END -->
+
+    <!-- SECTION:CONTACT-START -->
+    <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading" class="section-title">讓我們聊聊</h2>
+        <p class="contact-intro">無論是專案合作、設計諮詢，或只是想交流設計想法，都歡迎與我聯繫。我通常會在 24 小時內回覆訊息。</p>
+
+        <div class="contact-grid">
+          <div class="contact-methods">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-info">
+                <div class="contact-label">Email</div>
+                <a class="contact-link" href="mailto:hello@design-portfolio.com">hello@design-portfolio.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div class="contact-info">
+                <div class="contact-label">電話</div>
+                <a class="contact-link" href="tel:+886912345678">+886 912-345-678</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-info">
+                <div class="contact-label">位置</div>
+                <span class="contact-link">台北市，台灣</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="margin: 0 0 16px 0; font-size: 1.15rem; color: #f093fb;">社群平台</h3>
+            <div class="social-links">
+              <a class="social-link" href="https://www.behance.net/yourportfolio" target="_blank" rel="noopener">
+                <span>🎨</span>
+                <span>Behance</span>
+              </a>
+              <a class="social-link" href="https://dribbble.com/yourportfolio" target="_blank" rel="noopener">
+                <span>🏀</span>
+                <span>Dribbble</span>
+              </a>
+              <a class="social-link" href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener">
+                <span>💼</span>
+                <span>LinkedIn</span>
+              </a>
+              <a class="social-link" href="https://www.instagram.com/yourdesign" target="_blank" rel="noopener">
+                <span>📷</span>
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION:CONTACT-END -->
+  </main>
+
+  <footer class="section" role="contentinfo" aria-label="頁尾">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding: 32px 20px; border-top: 1px solid rgba(102, 126, 234, 0.15);">
+      <div style="font-size:0.95rem; color:#a8b5d1;">© 2025 林小美 · UI/UX Designer</div>
+      <div style="font-size:0.9rem; color:#8a96b0;">用心設計每一個細節 ✨</div>
+    </div>
   </footer>
+</div>
 </body>
 </html>
