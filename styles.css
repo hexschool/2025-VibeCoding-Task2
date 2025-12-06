@@ -15,6 +15,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   min-width: 0;
+  overflow-x: hidden;
 }
 .page {
   display: flex;
@@ -53,7 +54,8 @@ a {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
   transform: translateY(0);
   outline: none;
 }
@@ -118,8 +120,10 @@ a {
   color: #d4dce8;
   opacity: 0.9;
   transition: all 180ms ease;
+  white-space: nowrap;
 }
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
   background: rgba(102, 126, 234, 0.15);
   color: #f093fb;
   opacity: 1;
@@ -128,7 +132,11 @@ a {
 
 .section-hero {
   padding: 80px 0 64px 0;
-  background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, rgba(10, 14, 26, 0.8) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(102, 126, 234, 0.05) 0%,
+    rgba(10, 14, 26, 0.8) 100%
+  );
   position: relative;
   overflow: hidden;
 }
@@ -139,7 +147,11 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+  background: radial-gradient(
+    circle at 20% 50%,
+    rgba(102, 126, 234, 0.1) 0%,
+    transparent 50%
+  );
   pointer-events: none;
 }
 .hero-inner {
@@ -177,7 +189,11 @@ a {
 .hero-figure {
   border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1),
+    rgba(240, 147, 251, 0.1)
+  );
   border: 1px solid rgba(102, 126, 234, 0.2);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   max-width: 560px;
@@ -241,7 +257,11 @@ a {
   overflow: hidden;
   max-width: 480px;
   order: 2;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1),
+    rgba(240, 147, 251, 0.1)
+  );
   border: 1px solid rgba(102, 126, 234, 0.2);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
@@ -320,7 +340,11 @@ a {
 .project-card {
   padding: 28px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(240, 147, 251, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.08),
+    rgba(240, 147, 251, 0.05)
+  );
   border: 1px solid rgba(102, 126, 234, 0.2);
   transition: all 250ms ease;
 }
@@ -500,3 +524,27 @@ a {
   }
 }
 /* CSS:RWD-END */
+
+/* 320px 防水平捲動調整 */
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 4px;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
