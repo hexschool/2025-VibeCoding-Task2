@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>前端網頁作業示範</title>
+
+  <!-- 長度約 60 字，符合 50–160 -->
+  <meta name="description"
+        content="這是一個前端作業示範網站，展示正確 HTML 結構、SEO 設定與響應式設計的基本實作範例，適合初學者練習與作業繳交使用。">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 外部樣式 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 唯一的一個 h1 -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">前端網頁作業示範</h1>
+      <p class="site-subtitle">
+        符合 HTML 結構、SEO 與響應式規範的練習頁面
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>專案簡介</h2>
+      <p>
+        這個頁面示範如何建立一個結構完整、具備 SEO
+        設定並支援多裝置瀏覽的網站。版面採用彈性佈局與 RWD，
+        確保在 320px、768px、1440px 等視窗寬度下不會產生水平捲動。
+      </p>
+
+      <div class="hero-image">
+        <img
+          src="https://via.placeholder.com/1200x400?text=Responsive+Web+Demo"
+          alt="示意圖：開發者正在設計響應式網頁">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>本頁面符合的規範</h2>
+      <div class="features">
+        <article class="feature">
+          <h3>HTML 結構</h3>
+          <p>
+            採用標準的 <code>&lt;html&gt;</code>、
+            <code>&lt;head&gt;</code> 與 <code>&lt;body&gt;</code> 結構，
+            並設定 <code>lang="zh-Hant"</code> 與 UTF-8 編碼。
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>SEO 設定</h3>
+          <p>
+            擁有非空的 <code>&lt;title&gt;</code> 與長度合格的
+            <code>&lt;meta name="description"&gt;</code>，
+            便於搜尋引擎理解頁面內容。
+          </p>
+        </article>
+
+        <article class="feature">
+          <h3>可存取性與連結</h3>
+          <p>
+            所有圖片都包含有意義的 <code>alt</code>，
+            所有超連結皆有有效的 <code>href</code>，不使用空連結或純 <code>#</code>。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>延伸學習資源</h2>
+      <p>想要進一步學習前端開發，可以參考以下網站：</p>
+      <div class="links">
+        <a href="https://developer.mozilla.org/zh-TW/docs/Learn" target="_blank" rel="noopener noreferrer">
+          MDN Web Docs 教學
+        </a>
+        <a href="https://web.dev/learn/" target="_blank" rel="noopener noreferrer">
+          web.dev 學習資源
+        </a>
+        <a href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer">
+          freeCodeCamp 線上課程
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2025 前端網頁作業示範頁面．僅供課程練習使用。
+  </footer>
+</body>
+</html>
