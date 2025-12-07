@@ -207,7 +207,8 @@
       color: var(--color-bg);
       font-weight: 700;
       border-radius: 4px;
-      transition: opacity 0.3s;
+      transition: all 0.3s;
+      border: 2px solid var(--color-primary);
     }
 
     .btn:hover {
@@ -227,6 +228,58 @@
     /* CSS:ABOUT-START */
     .section-about {
       background-color: var(--color-bg);
+    }
+
+    .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-content {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-list {
+      margin: 1.5rem 0 2rem 0;
+      padding-left: 1.25rem;
+      list-style: disc;
+      color: var(--color-text-main);
+    }
+
+    .about-list li {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .about-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* 次要按鈕樣式 (Outline Style) */
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(56, 189, 248, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
 
     /* CSS:ABOUT-END */
@@ -269,6 +322,23 @@
 
       .section {
         padding: 6rem 0;
+      }
+
+      /* About 區塊 RWD 設定 */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      /* 讓文字在左 (Order 1)，圖片在右 (Order 2) */
+      .about-content {
+        order: 1;
+      }
+
+      .about-image {
+        order: 2;
       }
     }
 
@@ -324,22 +394,32 @@
         <div class="container">
           <h2 id="about-heading" class="section-title">關於我</h2>
 
-          <div class="placeholder-box">
-            <p><strong>這裡是 About 區的占位內容。</strong></p>
-            <p>未來會放置：</p>
-            <ul>
-              <li>個人背景故事與轉職歷程</li>
-              <li>工作熱忱與價值觀</li>
-              <li>個人生活照或形象照</li>
-            </ul>
-            <br>
-            <p class="placeholder-note">之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在 SECTION:ABOUT-START
-              與 END 兩個註解中間，完全取代現在這一區。</p>
-          </div>
+          <div class="about-grid">
+            <div class="about-content">
+              <p>
+                您好！我目前是一名全職前端工程師，熱衷於探索 React 與 Vue
+                生態系的最新技術。除了日常開發，我也投入時間進行技術教學與接案工作。我擅長將複雜的設計需求轉化為像素完美（Pixel-perfect）且高效能的網頁介面。
+              </p>
+              <p>
+                我相信技術是為了解決問題而存在。我擁有跨領域的協作背景，這養成了我「重視溝通」與「換位思考」的工作風格。我喜歡把複雜的技術概念拆解成清晰易懂的語言，確保團隊成員與客戶都能對專案目標有一致的理解。
+              </p>
 
-          <div style="margin-top: 2rem; max-width: 600px;">
-            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop"
-              alt="在會議室中專注工作的團隊成員" width="800" height="500" loading="lazy" style="border-radius: 8px;">
+              <ul class="about-list">
+                <li>具備現代化前端架構設計能力，注重程式碼可維護性</li>
+                <li>擅長跨部門溝通，能有效橋接設計與工程思維</li>
+                <li>熱愛分享與教學，能協助團隊新人快速上手</li>
+              </ul>
+
+              <div class="about-actions">
+                <a href="#projects" class="btn">查看作品集</a>
+                <a href="#contact" class="btn btn-outline">聯絡我</a>
+              </div>
+            </div>
+
+            <div class="about-image">
+              <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop"
+                alt="一位專注於編寫程式碼的軟體工程師，雙手在筆記型電腦鍵盤上操作" loading="lazy" width="800" height="600">
+            </div>
           </div>
         </div>
       </section>
