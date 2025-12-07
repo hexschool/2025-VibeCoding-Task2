@@ -1,221 +1,179 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name · Frontend Dev — 個人品牌網站</title>
-  <meta name="description" content="個人品牌網站範本：介紹個人背景、技能、作品集與聯絡方式。此站為 Phase 1 的骨架（單檔 index.html），後續會以 Section SDD 逐區替換完整內容與版面。" />
-  <style>
-    /* 移除重複的 HERO 區塊 CSS，保留一次即可 */
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timothy Chuang – Personal Portfolio</title>
+    <meta name="description" content="Timothy Chuang – Portfolio showcasing web development, mobile app development, design skills, and featured projects." />
 
-    /* CSS:BASE-START */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background-color: #0b1220;
-      color: #e6eef6;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      -webkit-text-size-adjust: 100%;
-    }
-    .page { min-height: 100vh; display: flex; flex-direction: column; }
-    .container { width: 100%; max-width: 1100px; padding: 0 16px; margin: 0 auto; }
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-    }
-    /* CSS:BASE-END */
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #007bff;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        section {
+            padding: 60px 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        .about, .skills, .projects {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .skill-item {
+            padding: 15px;
+            background: #eef4ff;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .project-item {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .project-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #333;
+            color: white;
+        }
 
-    /* CSS:HERO-START */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(11,18,32,0.85), rgba(11,18,32,0.65));
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 12px 0;
-    }
-    .site-brand {
-      font-weight: 700;
-      font-size: 1rem;
-      color: #ffffff;
-    }
-    .nav-list { display: flex; gap: 12px; align-items: center; }
-    .nav-link {
-      padding: 8px 10px;
-      border-radius: 8px;
-      color: rgba(230,238,246,0.9);
-      font-size: 0.95rem;
-      transition: background 160ms ease, transform 120ms ease;
-    }
-    .nav-link:hover,
-    .nav-link:focus {
-      background: rgba(14,165,164,0.08);
-      color: #dff7f6;
-      transform: translateY(-1px);
-    }
-    .section { padding: 48px 0; }
-    .section-hero {
-      padding-top: 64px;
-      padding-bottom: 48px;
-      display: flex;
-      align-items: center;
-    }
-    .hero-inner { display: grid; gap: 20px; }
-    .hero-title { font-size: 1.6rem; margin: 0 0 8px 0; color: #ffffff; }
-    .hero-lead { margin: 0 0 16px 0; color: #cfeef0; max-width: 48ch; }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary { background-color: #0ea5a4; color: #071018; }
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.06);
-      color: #d7eaf0;
-    }
-    .hero-image-wrap {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
-    }
-    /* CSS:HERO-END */
-
-    /* CSS:ABOUT-START */
-    .section-title { font-size: 1.25rem; margin-bottom: 12px; color: #f4fbfb; }
-    .about-grid { display: grid; gap: 16px; }
-    .section-about p { color: #c9dfe0; }
-    .about-image { border-radius: 10px; overflow: hidden; }
-    /* CSS:ABOUT-END */
-
-    /* CSS:SKILLS-START */
-    .skill-list { display: flex; gap: 8px; flex-wrap: wrap; }
-    .skill-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    /* CSS:SKILLS-END */
-
-    /* CSS:PROJECTS-START */
-    .projects-grid { display: grid; gap: 14px; }
-    .project-card {
-      padding: 14px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-    .project-desc { color: #cfeff0; }
-    /* CSS:PROJECTS-END */
-
-    /* CSS:CONTACT-START */
-    .contact-list { display: flex; flex-direction: column; gap: 8px; }
-    .contact-item a { color: #dbeff0; font-weight: 600; }
-    /* CSS:CONTACT-END */
-
-    /* CSS:RWD-START */
-    @media (min-width: 640px) {
-      .hero-title { font-size: 2rem; }
-    }
-    @media (min-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr 420px; }
-      .about-grid { grid-template-columns: 1fr 320px; }
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      .section { padding: 72px 0; }
-    }
-    @media (min-width: 1200px) {
-      .container { max-width: 1200px; }
-      .hero-title { font-size: 2.4rem; }
-    }
-    /* CSS:RWD-END */
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+        }
+        @media (max-width: 320px) {
+            body { padding: 0; overflow-x: hidden; }
+            .hero h1 { font-size: 28px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <div class="container nav" role="navigation" aria-label="主導覽列">
-        <div class="site-brand" aria-hidden="true">Your Name · Frontend Dev</div>
-        <nav class="nav-list" aria-label="主要導覽">
-          <a class="nav-link" href="#hero">首頁</a>
-          <a class="nav-link" href="#about">關於我</a>
-          <a class="nav-link" href="#skills">技能</a>
-          <a class="nav-link" href="#projects">作品集</a>
-          <a class="nav-link" href="#contact">聯絡我</a>
-        </nav>
-      </div>
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-      <section id="hero" class="section section-hero" aria-labelledby="hero-heading">
-        <div class="container hero-inner">
-          <div>
-            <h1 id="hero-heading" class="hero-title">個人品牌 — 前端工程師骨架網站</h1>
-            <p class="hero-lead">
-              這是 Phase 1 的骨架版面：用於介紹個人背景、技能、作品集與聯絡方式。之後會用 Section SDD 的 Prompt 產生正式文案，再整段貼回來取代此區。
-            </p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#projects">瀏覽作品集</a>
-              <a class="btn btn-ghost" href="mailto:hello@example.com">寄信給我</a>
+    <section class="hero">
+        <h1>Timothy Chuang</h1>
+        <p>Web Developer • App Developer • UI/UX Designer</p>
+    </section>
+
+    <section id="about" class="about container">
+        <h2>About Me</h2>
+        <p>Hello! I'm Timothy, a developer who loves building beautiful and efficient digital experiences.</p>
+    </section>
+
+    <section id="skills" class="skills container">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill-item">HTML</div>
+            <div class="skill-item">CSS</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">React</div>
+            <div class="skill-item">Node.js</div>
+            <div class="skill-item">UI / UX</div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects container">
+        <h2>Projects</h2>
+        <div class="projects-list">
+            <div class="project-item">
+                <img src="project1.jpg" alt="Project 1 screenshot" />
+                <h3>Project One</h3>
+                <p>A cool interactive web application.</p>
             </div>
-          </div>
-          <div class="hero-image-wrap">
-            <img src="https://source.unsplash.com/800x600/?developer,laptop,workspace" alt="開發者在筆電前工作的情境照片" loading="lazy" />
-          </div>
+            <div class="project-item">
+                <img src="project2.jpg" alt="Project 2 screenshot" />
+                <h3>Project Two</h3>
+                <p>A mobile-friendly responsive design project.</p>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="about" class="section section-about" aria-labelledby="about-heading">
-        <div class="container about-grid">
-          <div>
-            <h2 id="about-heading" class="section-title">關於我（之後會替換）</h2>
-            <p>這裡是暫時的 About 區塊內容。未來會放上正式的自我介紹、經歷與定位文字。</p>
-            <p>在寬螢幕版本會自動切換成左右欄排版。</p>
-          </div>
-          <aside class="about-image">
-            <img src="https://images.unsplash.com/photo-1505682634904-d7c9b8a0f2b8?auto=format&fit=crop&w=800&q=60" alt="前端開發者在桌前使用筆電" loading="lazy" />
-          </aside>
-        </div>
-      </section>
-
-      <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
-        <div class="container">
-          <h2 id="skills-heading" class="section-title">技能（之後會替換）</h2>
-          <p>此區將列出技術堆疊、工具、熟悉程度與證照。</p>
-          <div class="skill-list">
-            <span class="skill-pill">HTML</span>
-            <span class="skill-pill">CSS</span>
-            <span class="skill-pill">RWD</span>
-            <span class="skill-pill">Accessibility</span>
-            <span class="skill-pill">Git</span>
-            <span class="skill-pill">Design Systems</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
-        <div class="container">
-          <h2 id="projects-heading" class="section-title">作品集（之後會替換）</h2>
-          <p>這裡目前是作品集區的占位內容。</p>
-        </div>
-      </section>
-    </main>
-  </div>
+    <footer>
+        © 2025 Timothy Chuang. All Rights Reserved.
+    </footer>
 </body>
 </html>
